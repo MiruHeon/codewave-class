@@ -1,4 +1,4 @@
-홍대부중? 들어보지도 못하고 보지도 못한 학굔데?
+# 홍대부중? 들어보지도 못하고 보지도 못한 학굔데?
 <p align="center">
   <img src="https://github.com/MiruHeon/Normal-Project/blob/main/%EC%9E%AC%EB%B0%8C%EC%96%B4%EB%B3%B4%EC%9D%B4%EB%8A%94%EC%A7%A4.gif?raw=true">
 </p>
