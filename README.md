@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/MiruHeon/Normal-Project/blob/main/cwave.png?raw=true">
+</p>
+
 # 홍대부중? 들어보지도 못하고 보지도 못한 학굔데?
 ## 지금부터 알아가세요.
 크흠, 이 저장소는 홍익대학교사범대학부속중학교 최초 IT 동아리, 코드웨이브에서 진행 할 수업자료를 정리해서 공개하는 장소입니다.
