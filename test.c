@@ -1,48 +1,94 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_LINK 10
+#define MAX_CHILD 5
+#define MAX_LINK  5
+
+typedef struct Node {
+    int value;
+    struct Node* children[MAX_CHILD];
+    int child_count;
+} Node;
 
 typedef struct Tree {
-    int root;
-    int node2;
-    int node3;
+    Node* root;
     struct Tree* LinkTree[MAX_LINK];
     int link_count;
 } Tree;
 
-void GDS(Tree* node) {
+Node* createNode(int value) {
+    Node* node = (Node*)malloc(sizeof(Node));
+    node->value = value;
+    node->child_count = 0;
+    for (int i = 0; i < MAX_CHILD; i++)
+        node->children[i] = NULL;
+    return node;
+}
+
+void addChild(Node* parent, Node* child) {
+    if (parent->child_count < MAX_CHILD)
+        parent->children[parent->child_count++] = child;
+}
+
+Tree* createTree(Node* root) {
+    Tree* tree = (Tree*)malloc(sizeof(Tree));
+    tree->root = root;
+    tree->link_count = 0;
+    for (int i = 0; i < MAX_LINK; i++)
+        tree->LinkTree[i] = NULL;
+    return tree;
+}
+
+void linkTree(Tree* from, Tree* to) {
+    if (from->link_count < MAX_LINK)
+        from->LinkTree[from->link_count++] = to;
+}
+
+void traverseNode(Node* node) {
     if (!node) return;
+    printf("%d ", node->value);
+    for (int i = 0; i < node->child_count; i++)
+        traverseNode(node->children[i]);
+}
 
-    printf("노드 탐색: %d %d %d\n", node->root, node->node2, node->node3);
+void GDS(Tree* tree) {
+    if (!tree) return;
+    printf("\n[트리 탐색 시작]\n");
+    traverseNode(tree->root);
+    printf("\n");
 
-    for (int i = 0; i < node->link_count; i++) {
-        GDS(node->LinkTree[i]);
+    for (int i = 0; i < tree->link_count; i++) {
+        printf("  └ 다른 트리로 이동 (%d번째 링크)\n", i + 1);
+        GDS(tree->LinkTree[i]);
     }
 }
 
 int main(void) {
-    Tree* tree1 = (Tree*)malloc(sizeof(Tree));
-    Tree* tree2 = (Tree*)malloc(sizeof(Tree));
-    Tree* tree3 = (Tree*)malloc(sizeof(Tree));
-    Tree* tree4 = (Tree*)malloc(sizeof(Tree));
+    Node* r1 = createNode(1);
+    Node* a1 = createNode(2);
+    Node* a2 = createNode(3);
+    addChild(r1, a1);
+    addChild(r1, a2);
+    Tree* tree1 = createTree(r1);
 
-    tree1->root = 1;   tree1->node2 = 35;  tree1->node3 = 32; tree1->link_count = 2;
-    tree2->root = 21;  tree2->node2 = 23;  tree2->node3 = 53; tree2->link_count = 1;
-    tree3->root = 3;   tree3->node2 = 8;   tree3->node3 = 9;  tree3->link_count = 0;
-    tree4->root = 6;   tree4->node2 = 153; tree4->node3 = 45; tree4->link_count = 0;
+    Node* r2 = createNode(10);
+    Node* b1 = createNode(20);
+    addChild(r2, b1);
+    Tree* tree2 = createTree(r2);
 
-    tree1->LinkTree[0] = tree2;
-    tree1->LinkTree[1] = tree3;
-    tree2->LinkTree[0] = tree4;
+    Node* r3 = createNode(100);
+    Tree* tree3 = createTree(r3);
 
-    printf("GDS 탐색 결과:\n");
+    linkTree(tree1, tree2);
+    linkTree(tree2, tree3);
+
+    printf("=== Garden 탐색 시작 ===\n");
     GDS(tree1);
 
-    free(tree1);
-    free(tree2);
-    free(tree3);
-    free(tree4);
+    free(r1); free(a1); free(a2);
+    free(r2); free(b1);
+    free(r3);
+    free(tree1); free(tree2); free(tree3);
 
     return 0;
 }
