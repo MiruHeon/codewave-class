@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX 9
-
 typedef struct Tree {
     int node1;
     int node2;
