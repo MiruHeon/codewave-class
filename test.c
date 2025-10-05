@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define LinkTree 10
+#define MAX_LINK 10
 
 typedef struct Tree {
     int root;
     int node2;
     int node3;
-    struct Tree* link[LinkTree];
+    struct Tree* LinkTree[MAX_LINK];
     int link_count;
 } Tree;
 
@@ -17,7 +17,7 @@ void GDS(Tree* node) {
     printf("노드 탐색: %d %d %d\n", node->root, node->node2, node->node3);
 
     for (int i = 0; i < node->link_count; i++) {
-        GDS(node->link[i]);
+        GDS(node->LinkTree[i]);
     }
 }
 
@@ -32,9 +32,9 @@ int main(void) {
     tree3->root = 3;   tree3->node2 = 8;   tree3->node3 = 9;  tree3->link_count = 0;
     tree4->root = 6;   tree4->node2 = 153; tree4->node3 = 45; tree4->link_count = 0;
 
-    tree1->link[0] = tree2;
-    tree1->link[1] = tree3;
-    tree2->link[0] = tree4;
+    tree1->LinkTree[0] = tree2;
+    tree1->LinkTree[1] = tree3;
+    tree2->LinkTree[0] = tree4;
 
     printf("GDS 탐색 결과:\n");
     GDS(tree1);
@@ -46,4 +46,3 @@ int main(void) {
 
     return 0;
 }
-
