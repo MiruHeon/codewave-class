@@ -51,7 +51,7 @@ void traverseNode(Node* node) {
         traverseNode(node->children[i]);
 }
 
-void GDS(Tree* tree) {
+void GBS(Tree* tree) {
     if (!tree) return;
     printf("\n[트리 탐색 시작]\n");
     traverseNode(tree->root);
@@ -59,7 +59,7 @@ void GDS(Tree* tree) {
 
     for (int i = 0; i < tree->link_count; i++) {
         printf("  └ 다른 트리로 이동 (%d번째 링크)\n", i + 1);
-        GDS(tree->LinkTree[i]);
+        GBS(tree->LinkTree[i]);
     }
 }
 
@@ -83,7 +83,7 @@ int main(void) {
     linkTree(tree2, tree3);
 
     printf("=== Garden 탐색 시작 ===\n");
-    GDS(tree1);
+    GBS(tree1);
 
     free(r1); free(a1); free(a2);
     free(r2); free(b1);
