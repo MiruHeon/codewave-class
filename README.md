@@ -1,5 +1,6 @@
-<div style="text-align: center">
-    <img src="https://github.com/MiruHeon/codewave-site/blob/main/public/Hongik_night.png?raw=true">
+<div>
+    <img src="https://github.com/MiruHeon/codewave-site/blob/main/public/Hongik_night.png?raw=true" 
+         style="display: block; margin: 0 auto;">
 </div>
 
 # 홍대부중? 들어보지도 못하고 보지도 못한 학굔데?
