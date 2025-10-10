@@ -1,4 +1,4 @@
-<div style="text-align: center;">
+<div style="text-align: center">
     <img src="https://github.com/MiruHeon/codewave-site/blob/main/public/Hongik_night.png?raw=true">
 </div>
 
